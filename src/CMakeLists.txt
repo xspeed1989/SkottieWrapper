@@ -16,13 +16,22 @@ target_compile_definitions(SkottieWrapper PRIVATE
     SKOTTIEWRAPPER_LIBRARY_BUILD
 )
 
-target_link_libraries(SkottieWrapper PRIVATE
-    skia
-    skottie
-    sksg
-    skshaper
-    Opengl32
-)
+if(CMAKE_SYSTEM_NAME MATCHES "Windows")
+    target_link_libraries(SkottieWrapper PRIVATE
+        skia
+        skottie
+        sksg
+        skshaper
+        Opengl32
+    )
+else()
+    target_link_libraries(SkottieWrapper PRIVATE
+        skia
+        skottie
+        sksg
+        skshaper
+    )
+endif()
 
 if(MSVC)
     set(_vcrt "MultiThreaded")

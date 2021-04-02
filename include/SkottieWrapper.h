@@ -24,6 +24,10 @@
 #ifndef SKOTTIEWRAPPER_H
 #define SKOTTIEWRAPPER_H
 
+#ifndef _MSC_VER
+#include <stddef.h>
+#endif
+
 #ifdef __cplusplus
 #define SKOTTIE_EXTERN extern "C"
 #else
@@ -31,9 +35,17 @@
 #endif
 
 #ifdef SKOTTIEWRAPPER_LIBRARY_BUILD
-#define SKOTTIE_API SKOTTIE_EXTERN __declspec(dllexport)
+    #ifdef _MSC_VER
+        #define SKOTTIE_API SKOTTIE_EXTERN __declspec(dllexport)
+    #else
+        #define SKOTTIE_API SKOTTIE_EXTERN
+    #endif 
 #else
-#define SKOTTIE_API SKOTTIE_EXTERN __declspec(dllimport)
+    #ifdef _MSC_VER
+        #define SKOTTIE_API SKOTTIE_EXTERN __declspec(dllimport)
+    #else
+        #define SKOTTIE_API SKOTTIE_EXTERN
+    #endif 
 #endif
 
 typedef void Skottie_Animation;

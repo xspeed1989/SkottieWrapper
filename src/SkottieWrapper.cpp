@@ -30,7 +30,7 @@
 #include "src/utils/SkOSPath.h"
 #include "include/encode/SkPngEncoder.h"
 #include "modules/skottie/include/Skottie.h"
-#include <windows.h>
+
 struct Skottie_Animation_Private
 {
     sk_sp<skresources::CachingResourceProvider> rp;
