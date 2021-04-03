@@ -1,6 +1,11 @@
 set(SOURCE
     SkottieWrapper.cpp)
 
+if(WIN32)
+    enable_language(RC)
+    list(APPEND SOURCE SkottieWrapper.rc)
+endif()
+
 add_library(SkottieWrapper SHARED ${SOURCE})
 
 target_include_directories(SkottieWrapper PRIVATE
